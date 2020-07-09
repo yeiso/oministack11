@@ -1,9 +1,12 @@
 const crypto = require('crypto');
 const connection = require ('../database/connection');
+const { celebrate, Segments, Joi } = require ('celebrate');
+
 
 module.exports = {
     async index(request, response){
         const ongs = await connection('ongs').select('*');
+        
         return response.json(ongs);
     },
 

@@ -7,7 +7,10 @@ const sessionController = require('./controllers/sessionController');
 const routes = express.Router();
 
 routes.get('/ongs', ongController.index );
-routes.post('/ongs', ongController.create);
+
+routes.post('/ongs', celebrate({
+    [Segments.BODY]: Joi.object
+}) ,ongController.create);
 
 routes.post('/incidents', incidentController.create);
 routes.get('/incidents', incidentController.index);
